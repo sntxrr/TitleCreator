@@ -21,6 +21,21 @@ Enter this in the command line:
 
 ^ You did it! You have a new title! Add it to your Linkedin.
 
+## Instructions to run with Docker:
+
+1.  **Build the Docker image:**
+    Open your terminal in the root directory of this project (where the `Dockerfile` is located) and run:
+    ```bash
+    docker build -t titlecreator .
+    ```
+
+2.  **Run the Docker container:**
+    After the image is built successfully, you can get a new title by running:
+    ```bash
+    docker run --rm titlecreator
+    ```
+    The `--rm` flag automatically removes the container when it exits.
+
 #### COMING SOON
 
 a `golang` version 
