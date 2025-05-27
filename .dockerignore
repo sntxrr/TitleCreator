@@ -1,0 +1,17 @@
+# Git files
+.git/
+.gitignore
+
+# Potentially outdated App Engine config
+app.yaml
+
+# Dockerfile itself
+Dockerfile
+
+# Test files (if not needed in the final image)
+test_titlecreator.py
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
