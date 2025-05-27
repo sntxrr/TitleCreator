@@ -36,6 +36,7 @@ Enter this in the command line:
     ```
     The `--rm` flag automatically removes the container when it exits.
 
+
 ## Using the Public Docker Image (from GHCR)
 
 This repository automatically builds and publishes a Docker image to the GitHub Container Registry (GHCR) whenever changes are pushed to the `main` branch.
@@ -54,6 +55,7 @@ You can pull and run this pre-built image directly:
     ```
 
     This will output a new title, just like running it locally or building it yourself.
+
 
 #### COMING SOON
 
