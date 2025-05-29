@@ -1,0 +1,14 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: titlecreator
+spec:
+  template:
+    spec:
+      containers:
+        - image: ghcr.io/sntxrr/TitleCreator:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PORT
+              value: "8080" 
