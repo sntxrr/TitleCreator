@@ -4,7 +4,7 @@
 # have been expanded to include a mix of serious, creative, and zany options
 # to enhance the variety and fun of the generated titles.
 from random import seed, choice
-from flask import Flask, jsonify, render_template_string
+from flask import Flask, jsonify, render_template_string, request
 import os
 
 app = Flask(__name__)
@@ -178,8 +178,19 @@ def generate_title():
 @app.route('/', methods=['GET'])
 def get_title():
     title = generate_title()
-    if os.environ.get('WEB_MODE', 'false').lower() == 'true':
-        return render_template_string(HTML_TEMPLATE, title=title)
+    # Check if the client wants JSON
+    if request.headers.get('Accept') == 'application/json':
+        return jsonify({
+            'title': title,
+            'message': 'Congratulations! Your new title is:'
+        })
+    # Default to HTML for web browsers
+    return render_template_string(HTML_TEMPLATE, title=title)
+
+@app.route('/api/title', methods=['GET'])
+def api_title():
+    """Dedicated JSON API endpoint"""
+    title = generate_title()
     return jsonify({
         'title': title,
         'message': 'Congratulations! Your new title is:'
