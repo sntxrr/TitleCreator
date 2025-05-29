@@ -6,7 +6,7 @@ Inspired by a salesperson who would always introduce me with a new title on ever
 
 ## Contributors
 
-* [Don O'Neill (sntxrr)](https://github.com/rrxtns)
+* [Don O'Neill (sntxrr)](https://github.com/sntxrr)
 * [Joe Block (unixorn)](https://github.com/unixorn)
 * [Brandon McNama (DWSR)](https://github.com/DWSR)
 
@@ -35,6 +35,27 @@ Enter this in the command line:
     docker run --rm titlecreator
     ```
     The `--rm` flag automatically removes the container when it exits.
+
+
+## Using the Public Docker Image (from GHCR)
+
+This repository automatically builds and publishes a Docker image to the GitHub Container Registry (GHCR) whenever changes are pushed to the `main` branch.
+
+You can pull and run this pre-built image directly:
+
+1.  **Pull the latest image:**
+    ```bash
+    docker pull ghcr.io/sntxrr/TitleCreator:latest
+    ```
+
+
+2.  **Run the container:**
+    ```bash
+    docker run --rm ghcr.io/sntxrr/TitleCreator:latest
+    ```
+
+    This will output a new title, just like running it locally or building it yourself.
+
 
 #### COMING SOON
 
