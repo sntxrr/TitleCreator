@@ -6,7 +6,7 @@ Inspired by a salesperson who would always introduce me with a new title on ever
 
 ## Contributors
 
-* [Don O'Neill (sntxrr)](https://github.com/rrxtns)
+* [Don O'Neill (sntxrr)](https://github.com/sntxrr)
 * [Joe Block (unixorn)](https://github.com/unixorn)
 * [Brandon McNama (DWSR)](https://github.com/DWSR)
 
@@ -45,13 +45,13 @@ You can pull and run this pre-built image directly:
 
 1.  **Pull the latest image:**
     ```bash
-    docker pull ghcr.io/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME:latest
+    docker pull ghcr.io/sntxrr/TitleCreator:latest
     ```
-    *(You'll need to replace `YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME` with the actual path to this repository, e.g., `gabinante/TitleCreator` if that's the correct path)*
+
 
 2.  **Run the container:**
     ```bash
-    docker run --rm ghcr.io/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME:latest
+    docker run --rm ghcr.io/sntxrr/TitleCreator:latest
     ```
 
     This will output a new title, just like running it locally or building it yourself.
