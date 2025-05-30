@@ -75,12 +75,12 @@ This repository automatically builds and publishes a Docker image to the GitHub 
 
 ### CLI Mode
 ```bash
-docker run --rm ghcr.io/sntxrr/TitleCreator:latest
+docker run --rm ghcr.io/sntxrr/titlecreator:latest
 ```
 
 ### Web UI Mode
 ```bash
-docker run --rm -p 8080:8080 -e WEB_MODE=true ghcr.io/sntxrr/TitleCreator:latest
+docker run --rm -p 8080:8080 -e WEB_MODE=true ghcr.io/sntxrr/titlecreator:latest
 ```
 
 ### JSON API Mode
