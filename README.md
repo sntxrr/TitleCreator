@@ -111,7 +111,7 @@ curl -H "Accept: application/json" http://localhost:8080/
 4. **Deploy to Cloud Run:**
    ```bash
    gcloud run deploy titlecreator \
-     --image ghcr.io/sntxrr/TitleCreator:latest \
+     --image ghcr.io/sntxrr/titlecreator:latest \
      --platform managed \
      --region us-central1 \
      --allow-unauthenticated \
@@ -140,13 +140,13 @@ You can pull and run this pre-built image directly:
 
 1.  **Pull the latest image:**
     ```bash
-    docker pull ghcr.io/sntxrr/TitleCreator:latest
+    docker pull ghcr.io/sntxrr/titlecreator:latest
     ```
 
 
 2.  **Run the container:**
     ```bash
-    docker run --rm ghcr.io/sntxrr/TitleCreator:latest
+    docker run --rm ghcr.io/sntxrr/titlecreator:latest
     ```
 
     This will output a new title, just like running it locally or building it yourself.
