@@ -12,7 +12,7 @@ Inspired by a salesperson who would always introduce me with a new title on ever
 
 
 ## Instructions to get a new title:
-https://title-gen.appspot.com
+[https://title.sntxrr.codes/](https://title.sntxrr.codes/)
 
 ## Instructions to run locally:
 Enter this in the command line:
