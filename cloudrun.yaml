@@ -6,7 +6,7 @@ spec:
   template:
     spec:
       containers:
-        - image: ghcr.io/sntxrr/TitleCreator:latest
+        - image: us-west2-docker.pkg.dev/title-gen/titlegenerator/titlecreator:latest
           ports:
             - containerPort: 8080
           env:

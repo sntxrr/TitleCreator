@@ -69,18 +69,30 @@ Both will return a JSON response like:
 }
 ```
 
-## Using the Public Docker Image (from GHCR)
+## Using Pre-built Docker Images
 
-This repository automatically builds and publishes a Docker image to the GitHub Container Registry (GHCR) whenever changes are pushed to the `main` branch.
+This repository automatically builds and publishes Docker images to both GitHub Container Registry (GHCR) and Google Artifact Registry whenever changes are pushed to the `main` branch.
+
+### Available Images
+- **GitHub Container Registry**: `ghcr.io/sntxrr/titlecreator:latest`
+- **Google Artifact Registry**: `us-west2-docker.pkg.dev/title-gen/titlegenerator/titlecreator:latest`
 
 ### CLI Mode
 ```bash
+# Using GHCR
 docker run --rm ghcr.io/sntxrr/titlecreator:latest
+
+# Using Google Artifact Registry (requires authentication)
+docker run --rm us-west2-docker.pkg.dev/title-gen/titlegenerator/titlecreator:latest
 ```
 
 ### Web UI Mode
 ```bash
+# Using GHCR
 docker run --rm -p 8080:8080 -e WEB_MODE=true ghcr.io/sntxrr/titlecreator:latest
+
+# Using Google Artifact Registry (requires authentication)
+docker run --rm -p 8080:8080 -e WEB_MODE=true us-west2-docker.pkg.dev/title-gen/titlegenerator/titlecreator:latest
 ```
 
 ### JSON API Mode
@@ -96,60 +108,80 @@ curl -H "Accept: application/json" http://localhost:8080/
 
 ## Deploying to Google Cloud Run
 
+### Prerequisites
 1. **Install the Google Cloud SDK** if you haven't already.
-
 2. **Authenticate with Google Cloud:**
    ```bash
    gcloud auth login
    ```
 
-3. **Set your project ID:**
-   ```bash
-   gcloud config set project YOUR_PROJECT_ID
-   ```
+### Setup Artifact Registry (First Time Only)
+If you're setting up your own instance, you can use the provided setup script:
 
-4. **Deploy to Cloud Run:**
-   ```bash
-   gcloud run deploy titlecreator \
-     --image ghcr.io/sntxrr/titlecreator:latest \
-     --platform managed \
-     --region us-central1 \
-     --allow-unauthenticated \
-     --set-env-vars WEB_MODE=true
-   ```
+```bash
+PROJECT_ID=your-project-id ./setup-artifact-registry.sh
+```
 
-   Replace `us-central1` with your preferred region.
+**Note:** If you see "ALREADY_EXISTS: the repository already exists", that's perfectly fine! It means the Artifact Registry is already configured and ready to use.
 
-5. **Access your service:**
-   After deployment, Cloud Run will provide you with a URL where your service is accessible.
-   You can access the JSON API using:
-   ```bash
-   # Using the dedicated endpoint
-   curl https://your-service-url/api/title
-   
-   # Or using the Accept header
-   curl -H "Accept: application/json" https://your-service-url/
-   ```
+### Deploy to Cloud Run
+
+#### Option 1: Using gcloud CLI
+```bash
+gcloud run deploy titlecreator \
+  --image us-west2-docker.pkg.dev/title-gen/titlegenerator/titlecreator:latest \
+  --platform managed \
+  --region us-west1 \
+  --allow-unauthenticated \
+  --set-env-vars WEB_MODE=true \
+  --project title-gen
+```
+
+#### Option 2: Using Cloud Run YAML configuration
+```bash
+gcloud run services replace cloudrun.yaml --region=us-west1 --project title-gen
+```
+
+### Access Your Service
+After deployment, Cloud Run will provide you with a URL where your service is accessible.
+
+#### Web Interface
+Visit the provided URL in your browser to see the beautiful UI with the "Generate Another Title" button.
+
+#### JSON API
+You can access the JSON API using:
+```bash
+# Using the dedicated endpoint
+curl https://your-service-url/api/title
+
+# Or using the Accept header
+curl -H "Accept: application/json" https://your-service-url/
+```
+
+Both will return a JSON response like:
+```json
+{
+    "title": "Supreme AI Whisperer of Neural Networks",
+    "message": "Congratulations! Your new title is:"
+}
+```
 
 
-## Using the Public Docker Image (from GHCR)
+## Development
 
-This repository automatically builds and publishes a Docker image to the GitHub Container Registry (GHCR) whenever changes are pushed to the `main` branch.
+### Running Tests
+```bash
+python test_titlecreator.py
+```
 
-You can pull and run this pre-built image directly:
+### Local Development
+```bash
+# CLI mode
+python TitleCreator.py
 
-1.  **Pull the latest image:**
-    ```bash
-    docker pull ghcr.io/sntxrr/titlecreator:latest
-    ```
-
-
-2.  **Run the container:**
-    ```bash
-    docker run --rm ghcr.io/sntxrr/titlecreator:latest
-    ```
-
-    This will output a new title, just like running it locally or building it yourself.
+# Web mode
+WEB_MODE=true python TitleCreator.py
+```
 
 
 #### COMING SOON
