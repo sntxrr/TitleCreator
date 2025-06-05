@@ -169,18 +169,30 @@ Both will return a JSON response like:
 
 ## Development
 
-### Running Tests
-```bash
-python test_titlecreator.py
-```
+### 🚀 GitHub Codespaces (Recommended)
+This repository is configured with GitHub Codespaces for instant development:
+
+- Click `<> Code` → `Create codespace on main`
+- Pre-configured with Python, Docker, gcloud CLI, and all dependencies
+- Port 8080 automatically forwarded for web testing
+
+📖 **[Full Codespaces Documentation](CODESPACES.md)**
 
 ### Local Development
 ```bash
+# Install dependencies
+pip install -r requirements.txt
+
 # CLI mode
 python TitleCreator.py
 
 # Web mode
 WEB_MODE=true python TitleCreator.py
+```
+
+### Running Tests
+```bash
+python test_titlecreator.py
 ```
 
 

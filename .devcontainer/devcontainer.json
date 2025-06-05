@@ -1,0 +1,61 @@
+{
+    "name": "TitleCreator Development Environment",
+    "image": "mcr.microsoft.com/devcontainers/python:3.9",
+    
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/devcontainers/features/google-cloud-cli:1": {
+            "version": "latest"
+        }
+    },
+
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.flake8",
+                "ms-python.black-formatter",
+                "ms-azuretools.vscode-docker",
+                "redhat.vscode-yaml",
+                "ms-vscode.vscode-json",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "ms-vscode.remote-containers",
+                "bradlc.vscode-tailwindcss",
+                "formulahendry.auto-rename-tag"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.linting.enabled": true,
+                "python.linting.flake8Enabled": true,
+                "python.formatting.provider": "black",
+                "python.formatting.blackArgs": ["--line-length=88"],
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "source.organizeImports": true
+                },
+                "files.exclude": {
+                    "**/__pycache__": true,
+                    "**/*.pyc": true
+                }
+            }
+        }
+    },
+
+    "forwardPorts": [8080],
+    "portsAttributes": {
+        "8080": {
+            "label": "TitleCreator Web App",
+            "onAutoForward": "openPreview"
+        }
+    },
+
+    "postCreateCommand": "pip install -r requirements.txt && chmod +x setup-artifact-registry.sh",
+
+    "remoteUser": "vscode",
+
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    ]
+} 
