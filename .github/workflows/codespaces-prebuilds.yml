@@ -1,0 +1,24 @@
+name: Validate Codespaces Configuration
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.devcontainer/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '.devcontainer/**'
+
+jobs:
+  validate-devcontainer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Validate devcontainer.json
+        run: |
+          # Basic JSON validation
+          python -m json.tool .devcontainer/devcontainer.json > /dev/null
+          echo "✅ devcontainer.json is valid JSON" 
