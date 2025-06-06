@@ -11,7 +11,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the Python script into the container
-COPY TitleCreator.py .
+COPY titlecreator.py .
 
 # Make the script executable
 RUN chmod +x titlecreator.py
@@ -23,4 +23,4 @@ EXPOSE 8080
 ENV WEB_MODE=false
 
 # Set the command to run when the container starts
-CMD ["python", "TitleCreator.py"]
+CMD ["python", "titlecreator.py"]
