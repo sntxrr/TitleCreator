@@ -37,6 +37,18 @@
                     "**/*.pyc": true
                 }
             }
+        },
+        "codespaces": {
+            "repositories": {
+                "sntxrr/TitleCreator": {
+                    "permissions": {
+                        "issues": "write",
+                        "pull_requests": "write",
+                        "repository_projects": "write",
+                        "contents": "write"
+                    }
+                }
+            }
         }
     },
 
