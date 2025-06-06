@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY TitleCreator.py .
 
 # Make the script executable
-RUN chmod +x TitleCreator.py
+RUN chmod +x titlecreator.py
 
 # Expose the port the app runs on (only used in web mode)
 EXPOSE 8080
