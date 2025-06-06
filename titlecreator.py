@@ -99,7 +99,7 @@ HTML_TEMPLATE = '''
         <button class="refresh-btn" onclick="window.location.reload()">Generate Another Title</button>
         <div class="footer">
             <p>Inspired by a salesperson who would always introduce me with a new title on every call</p>
-            <p><a href="https://github.com/sntxrr/TitleCreator" target="_blank">🔗 View on GitHub</a></p>
+            <p><a href="https://github.com/sntxrr/titlecreator" target="_blank">🔗 View on GitHub</a></p>
             <p>made with ❤️ by <a href="https://sntxrr.link" target="_blank">sntxrr</a></p>
         </div>
     </div>
@@ -192,7 +192,9 @@ def get_title():
     if request.headers.get('Accept') == 'application/json':
         return jsonify({
             'title': title,
-            'message': 'Congratulations! Your new title is:'
+            'message': 'Congratulations! Your new title is:',
+            'github': 'https://github.com/sntxrr/titlecreator',
+            'creator': 'made with ❤️ by sntxrr - https://sntxrr.link'
         })
     # Default to HTML for web browsers
     return render_template_string(HTML_TEMPLATE, title=title)
@@ -203,12 +205,17 @@ def api_title():
     title = generate_title()
     return jsonify({
         'title': title,
-        'message': 'Congratulations! Your new title is:'
+        'message': 'Congratulations! Your new title is:',
+        'github': 'https://github.com/sntxrr/titlecreator',
+        'creator': 'made with ❤️ by sntxrr - https://sntxrr.link'
     })
 
 def print_title():
     print("Congratulations! Your new title is:")
     print(generate_title())
+    print()
+    print("🔗 View on GitHub: https://github.com/sntxrr/titlecreator")
+    print("made with ❤️ by sntxrr - https://sntxrr.link")
 
 if __name__ == '__main__':
     # Check if we should run as a web service
