@@ -98,7 +98,6 @@ HTML_TEMPLATE = '''
         <div class="title">{{ title }}</div>
         <button class="refresh-btn" onclick="window.location.reload()">Generate Another Title</button>
         <div class="footer">
-            Inspired by a salesperson who would always introduce me with a new title on every call
             <p>Inspired by a salesperson who would always introduce me with a new title on every call</p>
             <p><a href="https://github.com/sntxrr/TitleCreator" target="_blank">🔗 View on GitHub</a></p>
             <p>made with ❤️ by <a href="https://sntxrr.link" target="_blank">sntxrr</a></p>
