@@ -133,7 +133,7 @@ def prefix():
 def job():
     # List of job areas or focuses (e.g., Cloud, DevOps)
     l = ['Solutions', 'Systems', 'Network', 'Security', 'Compliance', 'Information', 'Scalability',
-            'Database', 'Platform', 'Storage', 'Cloud', 'DevOps', 'Blockchain', 'Serverless', 'Reliability',
+            'Database', 'Platform', 'Storage', 'Cloud', 'DevOps', 'DevSecOps', 'Blockchain', 'Serverless', 'Reliability',
             'Innovation', 'Synergy', 'Cybersecurity', 'Digital Transformation', 'Meme Curation',
             'Cat Herding', 'Quantum Entanglement',
             'AI', 'Machine Learning', 'Deep Learning', 'Neural Networks', 'Natural Language Processing',
