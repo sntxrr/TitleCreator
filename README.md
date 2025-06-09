@@ -17,7 +17,7 @@ Inspired by a salesperson who would always introduce me with a new title on ever
 ## Instructions to run locally:
 Enter this in the command line:
 
-`Python TitleCreator.py` or `./TitleCreator.py` on Linux/BSD/macOS.
+`python3 titlecreator.py` or `./titlecreator.py` on Linux/BSD/macOS.
 
 ^ You did it! You have a new title! Add it to your Linkedin.
 
