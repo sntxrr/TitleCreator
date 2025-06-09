@@ -10,7 +10,7 @@ This repository is configured with a pre-built GitHub Codespaces environment tha
    - Wait for the environment to build (first time takes ~3-5 minutes)
 
 2. **Environment will include**:
-   - ✅ Python 3.9 with Flask and dependencies
+   - ✅ Python 3.12 with Flask and dependencies
    - ✅ Docker and Docker Compose
    - ✅ Google Cloud CLI (`gcloud`)
    - ✅ GitHub CLI (`gh`)
