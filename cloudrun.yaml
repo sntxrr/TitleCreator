@@ -6,7 +6,7 @@ spec:
   template:
     spec:
       containers:
-        - image: us-west2-docker.pkg.dev/title-gen/titlegenerator/titlecreator:latest
+        - image: us-west2-docker.pkg.dev/title-gen/titlegenerator/titlecreator@sha256:${IMAGE_SHA}
           ports:
             - containerPort: 8080
           env:
