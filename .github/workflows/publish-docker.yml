@@ -15,6 +15,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          repository: sntxrr/titlecreator
+
+      - name: Install yq
+        run: |
+          wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          chmod +x /usr/local/bin/yq
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v2
@@ -36,7 +43,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ghcr.io/${{ github.repository }}
+            ghcr.io/sntxrr/titlecreator
             us-west2-docker.pkg.dev/title-gen/titlegenerator/titlecreator
           tags: |
             type=raw,value=latest
@@ -63,8 +70,11 @@ jobs:
 
       - name: Update cloudrun.yaml with image SHA
         run: |
-          # Use perl instead of sed for better handling of special characters
-          perl -pi -e "s/\${IMAGE_SHA}/${{ env.IMAGE_SHA_ONLY }}/" cloudrun.yaml
+          # Create a temporary file
+          cp cloudrun.yaml cloudrun.yaml.tmp
+          # Use yq to update the image field while preserving YAML structure
+          yq e ".spec.template.spec.containers[0].image = \"us-west2-docker.pkg.dev/title-gen/titlegenerator/titlecreator@${{ env.IMAGE_SHA_ONLY }}\"" cloudrun.yaml.tmp > cloudrun.yaml
+          rm cloudrun.yaml.tmp
           echo "Updated cloudrun.yaml with image SHA"
 
       - name: Deploy to Cloud Run
