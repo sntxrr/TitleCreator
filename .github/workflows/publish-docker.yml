@@ -56,13 +56,15 @@ jobs:
         run: |
           # Get the SHA of the image we just pushed
           IMAGE_SHA=$(docker inspect us-west2-docker.pkg.dev/title-gen/titlegenerator/titlecreator:latest --format='{{.RepoDigests}}' | cut -d'@' -f2)
-          echo "IMAGE_SHA=$IMAGE_SHA" >> $GITHUB_ENV
-          echo "Found image SHA: $IMAGE_SHA"
+          # Store just the SHA part without the image name
+          IMAGE_SHA_ONLY=$(echo "$IMAGE_SHA" | cut -d' ' -f1)
+          echo "IMAGE_SHA_ONLY=$IMAGE_SHA_ONLY" >> $GITHUB_ENV
+          echo "Found image SHA: $IMAGE_SHA_ONLY"
 
       - name: Update cloudrun.yaml with image SHA
         run: |
-          # Replace the IMAGE_SHA placeholder with the actual SHA
-          sed -i "s/\${IMAGE_SHA}/${{ env.IMAGE_SHA }}/" cloudrun.yaml
+          # Use perl instead of sed for better handling of special characters
+          perl -pi -e "s/\${IMAGE_SHA}/${{ env.IMAGE_SHA_ONLY }}/" cloudrun.yaml
           echo "Updated cloudrun.yaml with image SHA"
 
       - name: Deploy to Cloud Run
